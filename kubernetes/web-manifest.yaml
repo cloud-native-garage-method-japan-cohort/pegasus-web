@@ -7,7 +7,7 @@ metadata:
     app: team-pegasus-web
     app.kubernetes.io/instance: team-pegasus
     app.kubernetes.io/name: team-pegasus
-  name: team-pegasus
+  name: team-pegasus-web
   namespace: team-pegasus
 spec:
   ports:
