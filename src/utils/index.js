@@ -13,7 +13,7 @@ const api = axios.create({
 })
 
 export const queryDiscovery = async (searchText) => {
-  return await api.post('/discovery/search', {
+  return await api.post(`https://${API_ENDPOINT}/discovery/search`, {
     searchText: searchText
   })
 }
