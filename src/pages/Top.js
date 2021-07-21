@@ -6,6 +6,7 @@ import { makeStyles, Grid, Container, IconButton, Paper, InputBase} from "@mater
 import SearchIcon from '@material-ui/icons/Search';
 
 import { queryDiscovery }from '../utils/index';
+import Contents from '../components/Contents'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Top = () => {
   const [sendText, setSendText] = useState('');
-  const [recvText, setRecvText] = useState('');
+  const [recvText, setRecvText] = useState([]);
 
   const classes = useStyles();
 
@@ -72,7 +73,7 @@ const Top = () => {
       <Grid className={classes.grid}>
         <Container>
           <Grid>
-            {recvText}
+            <Contents results={recvText} />
           </Grid>
         </Container>
       </Grid>
