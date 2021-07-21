@@ -1,18 +1,13 @@
-
-# build environment
 FROM quay.io/jeffdean/node-alpine as build
-WORKDIR /app
-ENV PATH /app/node_modules/.bin:$PATH
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm ci --silent
-RUN npm install react-scripts@3.4.1 -g --silent
-COPY . ./
-RUN npm run build
 
-# production environment
-FROM nginx:stable-alpine
-COPY --from=build /app/build /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/
+WORKDIR /home/app
+
+COPY package*.json ./
+RUN npm install
+RUN npm config set unsafe-perm true
+COPY . .
+
+RUN chown -R node /home/app/node_modules
+USER node
 EXPOSE 3000
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["npm", "start"]
