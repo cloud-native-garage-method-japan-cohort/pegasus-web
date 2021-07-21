@@ -5,9 +5,8 @@ WORKDIR /home/app
 COPY package*.json ./
 RUN npm install
 RUN npm config set unsafe-perm true
+RUN mkdir node_modules/.cache && chmod -R 777 node_modules/.cache
 COPY . .
 
-RUN chown -R node /home/app/node_modules
-USER node
 EXPOSE 3000
 CMD ["npm", "start"]
